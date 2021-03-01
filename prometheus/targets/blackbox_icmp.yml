@@ -1,0 +1,6 @@
+- targets: ["10.1.4.1"]
+  labels:
+    describe: "徐州酒店"
+- targets: ["10.1.5.2"]
+  labels:
+    describe: "南京酒店"

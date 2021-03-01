@@ -1,0 +1,9 @@
+- targets: ["www.baidu.com"]
+  labels:
+    describe: "百度"
+- targets: ["https://www.taobao.com"]
+  labels:
+    describe: "淘宝"
+- targets: ["3.3.3.3"]
+  labels:
+    describe: "未上线网站"

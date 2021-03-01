@@ -1,0 +1,26 @@
+  - job_name: 'blackbox_icmp'
+    scrape_interval: 10s
+    metrics_path: /probe
+    params:
+      module: [icmp]
+    file_sd_configs:
+    - files: ['targets/blackbox_icmp.yml']
+      refresh_interval: 5s
+    relabel_configs:
+    - source_labels: [__address__]
+      regex: (.*)(:80)?
+      target_label: __param_target
+      replacement: ${1}
+    - source_labels: [__param_target]
+      regex: (.*)
+      target_label: ping
+      replacement: ${1}
+    - source_labels: []
+      regex: .*
+      target_label: __address__
+      replacement: 10.55.5.25:9115
+    - replacement: 'icmp monitor'
+      target_label: service
+    metric_relabel_configs:
+    - replacement: 'ops-network'
+      target_label: team
