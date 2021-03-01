@@ -1,0 +1,12 @@
+groups:
+- name: instance.rules #告警规则组名称
+  rules:
+  # 任何实例5分钟内无法访问发出告警
+  - alert: InstanceDown # 告警规则名称
+    expr: up == 0       # 基于PromQL的出发条件
+    for: 1m             # 等待评估时间
+    labels:             # 自定义标签
+      severity: page
+    annotations:        # 指定附加信息
+      summary: "{{ $labels.instance }} 停止工作"
+      description: " {{ $labels.instance }}: job {{ $labels.job }} 已经停止5分钟以上."

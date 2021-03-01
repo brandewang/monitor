@@ -1,0 +1,9 @@
+groups:
+- name: blackbox.rules
+  rules:
+  - alert: blackbox probe failed
+    expr: probe_success == 0
+    for: 2m
+    annotations:
+      summary: "{{$labels.job}}: {{$labels.describe }} 检测失败"
+      description: "{{$labels.job}}: {{$labels.describe }} 检测失败"
